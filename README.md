@@ -2,6 +2,14 @@
 
 Программа позволяет ставить свой статус для Discord!
 
+# Установка
+## Ручная
+1. Устанавливаем Python 3 [отсюда](https://www.python.org/downloads/) (ОБЯЗАТЕЛЬНО! отмечаем галочкой `Добавить в PATH`)
+1. Скачиваем репозиторий
+1. Открываем терминал в папке с репозиторием
+1. Устанавливаем зависимости `pip install -r requrements.txt`
+1. Запускаем программу `python main.py`
+
 # ToDo
 
 - [ ] Интерфейс
@@ -23,8 +31,8 @@
 ## Поддержка
 
 Если Я вам помог, то вы можете помочь мне одним из следующих способов:
-* BTC - bc1qr0u4ufn62gr9lllphlj0qcw6r24sygkl6ykfwv
-* XMR - 82rR8Gwj96e1cVe2AvVzsUdv9R3Ure3Un8ookY3qEtKQLrk43cwLWjMVvwEaPRX5zNe7kSrvcpGUZcngbvs1TYqkLGh9hZE
+* BTC - `bc1qr0u4ufn62gr9lllphlj0qcw6r24sygkl6ykfwv`
+* XMR - `82rR8Gwj96e1cVe2AvVzsUdv9R3Ure3Un8ookY3qEtKQLrk43cwLWjMVvwEaPRX5zNe7kSrvcpGUZcngbvs1TYqkLGh9hZE`
 * QIWI - https://qiwi.com/n/egter
 * За другими способами вы можете связаться со мной через [Telegram](https://t.me/cofob)
 
@@ -38,7 +46,7 @@
 
 # Подпись
 
-Все исполняемые файлы подписаны этим PGP ключом и имеют контрольную сумму (а так же комиты)
+Все исполняемые файлы подписаны этим `9FFD2837DF98628F` PGP ключом
 
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -94,3 +102,4 @@ d4g=
 =83e6
 -----END PGP PUBLIC KEY BLOCK-----
 ```
+Так же он хранится в файле `signkey.asc`
