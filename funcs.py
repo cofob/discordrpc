@@ -1,5 +1,8 @@
 import os
+import pickle
 import importlib.util
+from settings import *
+import time
 
 
 def check_module(module_name):
@@ -45,3 +48,34 @@ def mkfile(*args):
     if not os.path.isfile(path):
         f = open(path, 'w')
         f.close()
+
+
+def save_cfg():
+    with open(get_path([BASE_FOLDER, 'config']), 'wb') as f:
+        pickle.dump(CONFIG, f)
+
+
+pjoin = os.path.join
+
+
+def drp_thread(DRP):
+    global DRP_CONFIG
+    while True:
+        time.sleep(DRP_UPDATE_TIME)
+        if not DRP_IS_RUNNING:
+            continue
+        DRP.update(**DRP_CONFIG)
+    DRP.shutdown()
+
+
+def drp_addon_thread(func):
+    global DRP_CONFIG
+    while True:
+        time.sleep(DRP_UPDATE_TIME)
+        if not DRP_IS_RUNNING:
+            continue
+        DRP_CONFIG = func()
+
+
+def get_user_avatar(user):
+    return f'https://cdn.discordapp.com/avatars/{user["id"]}/{user["avatar"]}.png?size=128'
