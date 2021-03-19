@@ -1,11 +1,34 @@
 from api import *
 
 
+def get_linux_active_window_title():
+    import os, re, sys
+    from subprocess import PIPE, Popen
+    root = Popen( ['xprop', '-root', '_NET_ACTIVE_WINDOW'], stdout = PIPE )
+    stdout, stderr = root.communicate()
+
+    m = re.search( b'^_NET_ACTIVE_WINDOW.* ([\w]+)$', stdout )
+
+    if m is not None:
+        window_id = m.group( 1 )
+        window = Popen( ['xprop', '-id', window_id, 'WM_NAME'], stdout = PIPE )
+        stdout, stderr = window.communicate()
+
+        match = re.match( b'WM_NAME\(\w+\) = (?P<name>.+)$', stdout )
+        if match is not None:
+            return match.group( 'name' ).decode( 'UTF-8' ).strip( '"' )
+
+    return None
+
+
 def get_active_window():
     import sys
     active_window_name = None
     if sys.platform in ['linux', 'linux2']:
         # Alternatives: http://unix.stackexchange.com/q/38867/4784
+        window = get_linux_active_window_title()
+        if window is not None:
+            return window
         try:
             import wnck
         except ImportError:
