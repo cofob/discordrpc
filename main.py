@@ -16,10 +16,6 @@ logging.basicConfig(format='%(levelname)s:%(name)s -> %(message)s [%(asctime)s]'
 log = logging.getLogger("main")
 
 # SETUP
-# DRP INIT
-DRP_THREAD = threading.Thread(target=drp_thread, args=(drp.DRP(DRP_DEFAULT_APP_ID), ))
-DRP_THREAD.start()
-
 # create dirs and files
 mkdir(BASE_FOLDER, ADDONS_FOLDER)
 if not os.path.isfile(get_path([BASE_FOLDER, 'config'])):
@@ -40,6 +36,12 @@ else:
             pickle.dump(CONFIG, f)
 mkdir(BASE_FOLDER, ADDONS_FOLDER, DRP_FOLDER)
 mkdir(BASE_FOLDER, ADDONS_FOLDER, STATUS_FOLDER)
+
+# DRP INIT
+CURRENT_DRP_APP_ID = CONFIG.get('app_id', DRP_DEFAULT_APP_ID)
+log.info('current DRP app id -> '+str(CURRENT_DRP_APP_ID))
+DRP_THREAD = threading.Thread(target=drp_thread, args=(drp.DRP(CURRENT_DRP_APP_ID), ))
+DRP_THREAD.start()
 
 # drp addons import
 drp_addon_modules = []
