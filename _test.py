@@ -2,7 +2,7 @@ import pytest
 import funcs
 
 
-def check_getpath():
+def test_getpath():
     assert funcs.get_path('test', 'test1') == 'test/test1'
     assert funcs.get_path(['test', 'test1']) == 'test/test1'
     assert funcs.get_path(['test']) == 'test'
