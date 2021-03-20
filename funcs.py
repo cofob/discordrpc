@@ -26,9 +26,13 @@ def import_module(module):
         return import_module_from_spec(module_spec)
 
 
-def get_path(args):
+def get_path(*args):
     if len(args) == 0:
         raise AttributeError
+    if len(args) == 1:
+        if isinstance(args[0], str):
+            return args[0]
+        args = args[0]
     if len(args) == 1:
         return args[0]
     path = args[0]
