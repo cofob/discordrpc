@@ -1,3 +1,5 @@
+> **Archival notice:** This repository is archived and no longer maintained.
+
 # Discord RPC changer
 
 Программа позволяет ставить свой статус для Discord!
